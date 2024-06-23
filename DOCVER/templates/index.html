@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Verification</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="icon"  type="image/jpg" href="tracking.jpg">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            
+            background: whitesmoke;
+            /*background-image: url("{{url_for('static', filename='/wallpapers/wallpaper1.jpg')}}");  
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center center;
+            */
+            
+
+ /* Set your desired gradient colors */
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 5px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            text-align: center;
+            color: #17a2b8;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="color: black;">Document Verification</h1>
+
+    <form action="/process_image" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="image" style="color: black;">Upload Image:</label>
+            <input type="file" class="form-control" name="image" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-success">Process Image</button>
+    </form>
+
+    <!-- Fixed size box for the image -->
+    <div class="image-container">
+        <img src="{{url_for('static', filename='/image/user_upload.jpg')}}" alt="Uploaded Image">
+    </div>
+
+    {% if result_message %}
+    <h2 style="color: black;">Result:</h2>
+    <p style="color:darkblue;">{{ result_message }}</p>
+    {% endif %}
+
+    {% if qr_data %}
+    <h2 style="color: black;">QR Code Data:</h2>
+    <p style="color: darkgreen;">{{ qr_data }}</p>
+    {% endif %}
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
